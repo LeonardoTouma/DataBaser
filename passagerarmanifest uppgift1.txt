@@ -1,0 +1,61 @@
+1.
+Select Förnamn, Efternamn, Lön
+From tblBesättning, tblAvdelning
+Where Avliden IS not NULL
+
+
+2
+Select Förnamn, Efternamn, Lön,RangNamn,DödsOrsak,UPlanetnamn,Avliden
+From tblBesättning
+JOIN tblAvdelning ON tblBesättning.AvdelningID = tblAvdelning.AvdelningID
+JOIN tblRang ON tblBesättning.RangID = tblRang.RangID
+JOIN tblDöd ON tblBesättning.DödID = tblDöd.DödID
+JOIN tblUplanet ON tblBesättning.PlanetID = tblUplanet.UrsprungsplanetID
+
+
+2.1 Select Förnamn, Efternamn,Avliden,DödsOrsak
+FROM tblBesättning
+JOIN tblDöd ON tblBesättning.DödID = tblDöd.DödID
+Where Avliden is not null
+
+
+3. Select Lön,RangNamn
+From tblBesättning
+JOIN tblRang ON tblBesättning.RangID = tblRang.RangID
+WHERE RangNamn = 'Kapten' > 50000 AND 'Kapten' IS NULL
+
+4.
+Select Uplanetnamn
+FROM tblBesättning
+JOIN tblUplanet ON tblBesättning.PlanetID = tblUplanet.UrsprungsplanetID
+Where UPlanetnamn = 'mars' AND Avliden IS NOT NULL
+
+5.
+Select Förnamn,Efternamn
+FROM tblBesättning
+WHERE (Avliden BETWEEN '2000-04-05' AND '2080-11-21')
+
+
+6.
+Select COUNT (*) Rang
+From tblBesättning
+JOIN tblRang ON tblBesättning.RangID = tblRang.RangID
+GROUP BY tblRang.RangID (Ascending)
+
+7. 
+Select MAX (Lön) + '' AS "Högsta Lön"
+From tblBesättning
+
+8. 
+Select DödsOrsak
+From tblBesättning
+JOIN tblDöd ON tblBesättning.DödID = tblDöd.DödID
+WHERE Avliden IS NOT NULL
+GROUP BY DödsOrsak
+
+9.
+SELECT AVG(Lön)+' ' AS "Medel lönen" 
+FROM JOIN tblRang ON tblBesättning.RangID = tblRang.RangID 
+ORDER BY AverageSalary;
+
+ 
